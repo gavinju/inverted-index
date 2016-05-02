@@ -1,0 +1,9 @@
+{
+  "jasmine": true,
+  "browser": true,
+  "eqeqeq": true,
+  "predef": [
+    "Index",
+    "console"
+  ]
+}

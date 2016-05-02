@@ -1,0 +1,17 @@
+{
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "Inverted index",
+  "scripts": {
+    "test": "node_modules/.bin/http-server -p 3000 -o \"http://localhost:3000/jasmine/SpecRunner.html\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andela-hthuo/inverted-index.git"
+  },
+  "author": "Humphrey Thuo",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}
