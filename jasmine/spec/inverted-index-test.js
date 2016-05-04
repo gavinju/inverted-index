@@ -55,18 +55,17 @@ describe('Inverted index', function() {
   });
 
   describe('Search index', function() {
-    
+
     beforeEach(function() {
       index.createIndex(filePath);
     });
 
     it('returns an array of the indices of the correct objects that contain the words in the search query', function() {
-      var results1 = index.searchIndex('alice wonderland');
-      var results2 = index.searchIndex('fellowship world');
-      expect(results1).toContain(0);
-      expect(results1).not.toContain(1);
-      expect(results2).toContain(0);
-      expect(results2).toContain(1);
+      var results = index.searchIndex('alice wonderland');
+      expect(results).toEqual([0]);
+
+      results = index.searchIndex('fellowship world');
+      expect(results).toEqual([1, 0]);
     });
   });
 });
