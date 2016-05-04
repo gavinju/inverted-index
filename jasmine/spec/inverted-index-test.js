@@ -60,11 +60,19 @@ describe('Inverted index', function() {
       index.createIndex(filePath);
     });
 
-    it('returns an array of the indices of the correct objects that contain the words in the search query', function() {
+    it('returns an array of the indices of the correct objects that contain the words in a search query', function() {
       var results = index.searchIndex('alice wonderland');
       expect(results).toEqual([0]);
 
       results = index.searchIndex('fellowship world');
+      expect(results).toEqual([1, 0]);
+    });
+
+    it('returns an array of the indices of the correct objects that contain the words in an array', function() {
+      var results = index.searchIndex(['alice', 'wonderland']);
+      expect(results).toEqual([0]);
+
+      results = index.searchIndex(['fellowship', 'world']);
       expect(results).toEqual([1, 0]);
     });
   });

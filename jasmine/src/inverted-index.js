@@ -110,7 +110,12 @@ Index.prototype.getBooks = function() {
  * @params {string} query - What to search for
  */
 Index.prototype.searchIndex = function(query) {
-  var terms = this.tokenize(query);
+  var terms;
+  if (typeof query === 'string') {
+    terms = this.tokenize(query);
+  } else if (Array.isArray(query)) {
+    terms = query;
+  }
   var results = new Set();
   for (var term of terms) {
     term = term.toLowerCase();
