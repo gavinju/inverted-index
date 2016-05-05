@@ -75,5 +75,22 @@ describe('Inverted index', function() {
       results = index.searchIndex(['fellowship', 'world']);
       expect(results).toEqual([1, 0]);
     });
+
+    it('returns an empty array when the search terms are not in the index', function() {
+      var results = index.searchIndex(['khaleesi', 'dragons']);
+      expect(results).toEqual([]);
+
+      results = index.searchIndex('khaleesi dragons');
+      expect(results).toEqual([]);
+    });
+
+    it('returns an empty array when the search terms are empty', function() {
+      var results = index.searchIndex([]);
+      expect(results).toEqual([]);
+
+      results = index.searchIndex('');
+      expect(results).toEqual([]);
+    });
+
   });
 });
