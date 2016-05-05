@@ -46,10 +46,10 @@ describe('Inverted index', function() {
       var allBooks = index.getBooks();
       var indexMap = index.getIndex();
       for (var term in indexMap) {
-        for (var book of indexMap[term]) {
+        indexMap[term].forEach(function(book) {
           var bookContent = index.bookContent(allBooks[book]).toLowerCase();
           expect(bookContent).toMatch(term);
-        }
+        });
       }
     });
   });

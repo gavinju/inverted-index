@@ -22,24 +22,25 @@ function Index() {
  * @param {string} filePath - The location of the file
  */
 Index.prototype.createIndex = function(filePath) {
-  this.books = this.loadJSON(filePath);
-  for (var book = 0; book < this.books.length; book++) {
-    var content = this.bookContent(this.books[book]);
-    var terms = this.tokenize(content);
-    for (var term of terms) {
+  var _this = this;
+  _this.books = _this.loadJSON(filePath);
+  _this.books.forEach(function(book, index) {
+    var content = _this.bookContent(book);
+    var terms = _this.tokenize(content);
+    terms.forEach(function(term) {
       term = term.toLowerCase();
       // ignore stop words
-      if (this.stopWords.indexOf(term) !== -1) {
-        continue;
+      if (_this.stopWords.indexOf(term) !== -1) {
+        return;
       }
       // if the term is not in the index add it to the index
-      if (!(term in this.index)) {
+      if (!(term in _this.index)) {
         // Use a set so that each book is only included once
-        this.index[term] = new Set();
+        _this.index[term] = new Set();
       }
-      this.index[term].add(book);
-    }
-  }
+      _this.index[term].add(index);
+    });
+  });
 };
 
 /**
@@ -109,20 +110,21 @@ Index.prototype.getBooks = function() {
  * @params {string|Array} query - What to search for
  */
 Index.prototype.searchIndex = function(query) {
+  var _this = this;
   var terms;
   if (typeof query === 'string') {
-    terms = this.tokenize(query);
+    terms = _this.tokenize(query);
   } else if (Array.isArray(query)) {
     terms = query;
   }
   var results = new Set();
-  for (var term of terms) {
+  terms.forEach(function(term) {
     term = term.toLowerCase();
-    if (term in this.index) {
-      for (var book of this.index[term]) {
+    if (term in _this.index) {
+      _this.index[term].forEach(function(book) {
         results.add(book);
-      }
+      });
     }
-  }
+  });
   return Array.from(results);
 };
