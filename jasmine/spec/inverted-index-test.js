@@ -45,12 +45,12 @@ describe('Inverted index', function() {
     it('maps the string keys to the correct objects', function() {
       var allBooks = index.getBooks();
       var indexMap = index.getIndex();
-      for (var term in indexMap) {
+      Object.keys(indexMap).forEach(function(term) {
         indexMap[term].forEach(function(book) {
           var bookContent = index.bookContent(allBooks[book]).toLowerCase();
           expect(bookContent).toMatch(term);
         });
-      }
+      });
     });
   });
 
