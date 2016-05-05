@@ -2,7 +2,7 @@
 
 /* exported Index */
 /**
- * The inverted index object.
+ * The inverted index class constructor.
  * @constructor
  */
 function Index() {
@@ -85,8 +85,7 @@ Index.prototype.tokenize = function(text) {
     /[\!"#\$%&'\(\)\*\+\,\-\.\/:;<=>\?@\[\\\]\^_`\{\|\}~]/g;
   text = text.replace(punctuationRegex, '');
   // collapse whitespace
-  text = text.replace(/\s+/g, ' ');
-  return text.split(' ');
+  return text.replace(/\s+/g, ' ').split(' ');
 };
 
 /**
@@ -107,7 +106,7 @@ Index.prototype.getBooks = function() {
 
 /**
  * Search the index
- * @params {string} query - What to search for
+ * @params {string|Array} query - What to search for
  */
 Index.prototype.searchIndex = function(query) {
   var terms;
