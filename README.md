@@ -19,3 +19,4 @@ npm install
 ```
 npm test
 ```
+If it doesn't open the browser automatically, open the browser and navigate to `http://localhost:3000/jasmine/SpecRunner.html`
