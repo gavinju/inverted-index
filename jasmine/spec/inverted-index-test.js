@@ -40,7 +40,7 @@ describe('Inverted index', () => {
     });
 
     it('creates the index', () => {
-      expect(index.getIndex()).not.toBeFalsy();
+      expect(index.getIndex()).not.toEqual(new Map());
     });
 
     it('maps the string keys to the correct objects', () => {
